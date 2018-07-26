@@ -10,8 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r global_options, echo=FALSE}
-knitr::opts_chunk$set(fig.path="../figs/", message=FALSE, warning=FALSE,
-                      echo=FALSE, results="hide", fig.width=11)
+knitr::opts_chunk$set(fig.path = "../figs/", message = FALSE, warning = FALSE,
+                      fig.width = 11)
 ```
 ## The gapminder dataset
 
@@ -85,7 +85,7 @@ countries_major_increment %>%
 
 Answering the question with a Lollipop plot inspired by https://www.r-graph-gallery.com/301-custom-lollipop-chart/
 
-```{r fig_1_analysis, fig.height=5, fig.width=8, fig.cap="Figure 1: Countries with 4 fold population increment between 1952 and 2007"}
+```{r fig_1_analysis, fig.height=5, fig.width=10, fig.cap="Figure 1: Countries with 4 fold population increment between 1952 and 2007"}
 
   ggplot(countries_major_increment, 
          aes(x = country, y = increment_pop_percentage, color = continent)) +
