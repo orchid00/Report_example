@@ -1,7 +1,7 @@
 ---
 title: "Gapminder Report"
 author: "Paula Andrea Martinez"
-date: "July 25, 2018"
+date: "August 8, 2018"
 output: html_document
 ---
 
@@ -18,8 +18,11 @@ if (!file.exists("../data/SWCgapminder.csv")) {
 }
 ```
 
-```{r }
+```{r message=FALSE}
 library(tidyverse)
+```
+
+```{r}
 gapminder <- read_csv("../data/SWCgapminder.csv")
 ```
 
@@ -30,16 +33,94 @@ glimpse(gapminder)
 
 ## Question
 
-## Figure
+My idea is to discover which countries have population growth increment about
+four times more than the original data (400%+),
+comparing the first data observed in 1952 and the last data observed in 2007.
 
-You can also embed plots, for example:
+## Analysis
 
-```{r transform, echo=FALSE}
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point() + 
-    scale_x_log10()
+The analysis is based on subset of the data, hence reducing it is a good idea to
+start with (select and filter). Then, a calculation between the 
+two selected years is needed, for which making the data in wide format is useful. 
+After that, producing the calculated increment percentange (could have been done
+in one column). Lastly, arranging the output to have the countries with major increment 
+at the top. Filtering towards the end can be conveniently modified. The last two 
+lines; mutate country as factor (serves to keep the arrangement for the subsequent 
+plot), and removing increment_pop (only to make the table include the necessary 
+display columns).
+
+Note, continent was kept as it will be plotted as category, and aids in the 
+conclusion. Lastly, for the plot, one can ignore the columns year 1952 and 2007. 
+However it is beneficial to have it displayed in the column for visual comparison
+of population grow.
+
+```{r}
+countries_major_increment <- 
+gapminder %>% 
+    select(country, year, pop, continent) %>% 
+    filter(year == 1952 | year == 2007) %>% 
+    spread(key = year, value = pop) %>% 
+    mutate(increment_pop = `2007` - `1952`,
+           increment_pop_percentage = round(increment_pop / `1952` * 100, 2)) %>% 
+    arrange(desc(increment_pop_percentage)) %>% 
+    filter(increment_pop_percentage >= 400) %>% 
+    mutate(country = factor(country, levels = country)) %>% 
+    select(-increment_pop)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Results
+
+The countries which have a population growth increment of about
+four times (400%+) more than the original data, comparing 1952 and 2007
+```{r}
+countries_major_increment %>% 
+    knitr::kable(caption = "Table 1: Countries with 4 fold population increment between 1952 and 2007")
+
+```
+
+Answering the question with a Lollipop plot inspired by https://www.r-graph-gallery.com/301-custom-lollipop-chart/
+
+```{r fig.height=5, fig.width=8, fig.cap="Figure 1: Countries with 4 fold population increment between 1952 and 2007"}
+
+  ggplot(countries_major_increment, 
+         aes(x = country, y = increment_pop_percentage, color = continent)) +
+    geom_segment( aes(x = country, xend = country, y = 0, yend = increment_pop_percentage),
+                   color = "skyblue") +
+    geom_point( size = 2) +
+    geom_text(aes(label = paste0(increment_pop_percentage, "%")), size = 4, nudge_y = 130) +
+    theme_light() +
+    coord_flip() +
+    theme( panel.grid.major.y = element_blank(),
+           panel.grid.minor  = element_blank(),
+           panel.border = element_blank()
+           ) +
+    xlab("") +
+    ylab("Percentage increment in population from 1952 until 2007")
+
+```
+
 
 ## Conclusion
+
+From the data analysed 13 countries had incremented their population by 4 times,
+comparing the observationa from 1952 and 2007. These 13 countries represent 7 
+Asian and 6 African countries.
+
+The plot clearly displays Kuwait as the country with major population 
+increment, also detailed in Table 1, from having 160 thousand people in 1952 
+and reaching to 2.5 millions in 5.5 decades is equals to almost a 14 times 
+population increment since 1952.
+
+It is important to notice some facts putting in context our analysis. First of 
+all, the information shown here is solely dependent on the data and its accuracy.
+After double checking external data, Kuwait seems to be receiving many expats 
+which contributes to its population growth, so not only more births but external
+inflow of people. 
+Another comparison to explore with the aid of external data is to see how the growth 
+continued after 2007 
+[[1](https://en.wikipedia.org/wiki/List_of_countries_by_population_growth_rate)].
+In respect to the external table, we can notice other facts, not only that 
+population growth varied over the last ten years, in relation to the present 
+analysis. Also, that some countries were not included in the original dataset, 
+such as Qatar, South Sudan and United Arab Emirates. Hence our analysis is 
+limited to our original observations.
