@@ -9,25 +9,29 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.path="../figs/", message=FALSE, warning=FALSE,
+                      echo=FALSE, results="hide", fig.width=11)
+```
 ## The gapminder dataset
 
-```{r }
+```{r download_file}
 if (!file.exists("../data/SWCgapminder.csv")) {
   download.file(url = "http://tiny.cc/SWCgapminder",
               destfile = "../data/SWCgapminder.csv")
 }
 ```
 
-```{r message=FALSE}
+```{r load_lib, message=FALSE}
 library(tidyverse)
 ```
 
-```{r}
+```{r read_data}
 gapminder <- read_csv("../data/SWCgapminder.csv")
 ```
 
 ## Exploring the dataset
-```{r}
+```{r explore_gapminder}
 glimpse(gapminder)
 ```
 
@@ -54,7 +58,7 @@ conclusion. Lastly, for the plot, one can ignore the columns year 1952 and 2007.
 However it is beneficial to have it displayed in the column for visual comparison
 of population grow.
 
-```{r}
+```{r analysis}
 countries_major_increment <- 
 gapminder %>% 
     select(country, year, pop, continent) %>% 
@@ -71,8 +75,9 @@ gapminder %>%
 ## Results
 
 The countries which have a population growth increment of about
-four times (400%+) more than the original data, comparing 1952 and 2007
-```{r}
+four times (400%+) more than the original data, comparing 1952 and 2007.
+
+```{r table_1_analysis}
 countries_major_increment %>% 
     knitr::kable(caption = "Table 1: Countries with 4 fold population increment between 1952 and 2007")
 
@@ -80,7 +85,7 @@ countries_major_increment %>%
 
 Answering the question with a Lollipop plot inspired by https://www.r-graph-gallery.com/301-custom-lollipop-chart/
 
-```{r fig.height=5, fig.width=8, fig.cap="Figure 1: Countries with 4 fold population increment between 1952 and 2007"}
+```{r fig_1_analysis, fig.height=5, fig.width=8, fig.cap="Figure 1: Countries with 4 fold population increment between 1952 and 2007"}
 
   ggplot(countries_major_increment, 
          aes(x = country, y = increment_pop_percentage, color = continent)) +
@@ -96,20 +101,25 @@ Answering the question with a Lollipop plot inspired by https://www.r-graph-gall
            ) +
     xlab("") +
     ylab("Percentage increment in population from 1952 until 2007")
-
 ```
 
 
 ## Conclusion
 
-From the data analysed 13 countries had incremented their population by 4 times,
-comparing the observationa from 1952 and 2007. These 13 countries represent 7 
-Asian and 6 African countries.
+From the data analysed `r nrow(countries_major_increment)` countries had 
+incremented their population by 4 times,
+comparing the observationa from 1952 and 2007.
+These
+`r nrow(countries_major_increment)` countries represent
+`r nrow(countries_major_increment %>% filter(continent == "Asia"))` Asian and
+`r nrow(countries_major_increment %>% filter(continent == "Africa"))` African 
+countries.
 
-The plot clearly displays Kuwait as the country with major population 
-increment, also detailed in Table 1, from having 160 thousand people in 1952 
-and reaching to 2.5 millions in 5.5 decades is equals to almost a 14 times 
-population increment since 1952.
+The plot clearly displays Kuwait as the country
+with major population increment, also detailed in Table 1, from having
+`r format.AsIs(countries_major_increment$"1952"[1])` people in 1952 and reaching to 
+`r format.AsIs(countries_major_increment$"2007"[1])` in 5.5 decades (2007) is 
+almost a 15 times population increment since 1952. 
 
 It is important to notice some facts putting in context our analysis. First of 
 all, the information shown here is solely dependent on the data and its accuracy.
