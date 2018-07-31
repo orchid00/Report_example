@@ -9,7 +9,7 @@ you can access the source code in the report folder file
 [Rmd](./report/Gapminderreport.Rmd)
 
 You will see the question that led to this figure
-![countries with increasing population](./figs/fig_1_analysis.png)
+![countries with increasing population](https://orchid00.github.io/Report_example/figs/fig_1_analysis-1.png)
 and the code that produce it.
 
 
