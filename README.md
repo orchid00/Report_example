@@ -14,7 +14,7 @@ and the code that produce it.
 
 ## Challenge yourself
 
-Challenge yourself
+Create your own report
 - Create an Rmarkdown file
 - Load the tidyverse
 - Explore the dataset
