@@ -12,6 +12,16 @@ You will see the question that led to this figure
 ![countries with increasing population](https://orchid00.github.io/Report_example/figs/fig_1_analysis-1.png)
 and the code that produce it.
 
+## Challenge yourself
+
+Challenge yourself
+- Create an Rmarkdown file
+- Load the tidyverse
+- Explore the dataset
+- Think about a question to answer
+- Answer the question with a plot
+- Write your conclusions
+
 
 ## License
 
