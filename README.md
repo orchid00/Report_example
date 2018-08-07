@@ -12,10 +12,20 @@ You will see the question that led to this figure
 ![countries with increasing population](https://orchid00.github.io/Report_example/figs/fig_1_analysis-1.png)
 and the code that produce it.
 
+## Challenge yourself
+
+Create your own report
+- Create an Rmarkdown file
+- Load the tidyverse
+- Explore the dataset
+- Think about a question to answer
+- Answer the question with a plot
+- Write your conclusions
+
 
 ## License
 
-![CC by 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png) 
+![CC by 4.0](https://licensebuttons.net/l/by/4.0/88x31.png) 
 This example is part of instructional material made available under the 
 [Creative Commons Attribution license CC by 4.0](https://creativecommons.org/licenses/by/4.0/).
 
