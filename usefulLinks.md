@@ -20,7 +20,9 @@
 
 - R Studio shortcuts   Alt+Shift+K
 
-- ggplot2 different color palettes (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+- ggplot2 different color palettes see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+
+- http://www.stat.columbia.edu/%7Etzheng/files/Rcolor.pdf
 
 - https://www.rstudio.com/resources/cheatsheets/
 
