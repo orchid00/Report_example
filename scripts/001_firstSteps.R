@@ -1,6 +1,6 @@
 # Documentation ----
 # Description: first steps with R
-# Author: paula Andrea Martinez
+# Author: Paula Andrea Martinez
 # Date: Aug 7, 2018
 
 # Objects types ----
