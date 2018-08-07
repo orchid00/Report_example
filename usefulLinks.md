@@ -31,8 +31,6 @@
 - http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
 
 - Cool plugin to "manually" edit your ggplots directly from Rstudio: https://github.com/calligross/ggthemeassist
-
--   You can install it the same way than an R package
--   This is how it works: https://raw.githubusercontent.com/calligross/ggthemeassist/master/examples/ggThemeAssist2.gif
+You can install it the same way than an R package. This is how it works: https://raw.githubusercontent.com/calligross/ggthemeassist/master/examples/ggThemeAssist2.gif
 
 - Also, this package allows you to obtain 'publication ready plots' and it's built on top of ggplot2: http://www.sthda.com/english/rpkgs/ggpubr/ Cool feature: if you have 2 or more groups that you are comparing and plotting (i.e. with boxpots, violin plots, etc) this includes a built-in function to do the statistics between the groups (for instance t-tests) and add the lines and significance values to the plot: http://www.sthda.com/english/rpkgs/ggpubr/reference/stat_compare_means.html
