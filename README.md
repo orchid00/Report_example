@@ -11,7 +11,7 @@ you can access the source code in the report folder file
 You will see the question that led to this figure
 ![countries with increasing population](https://orchid00.github.io/Report_example/figs/fig_1_analysis-1.png)
 and the code that produce it.
-Also sahred using [mybinder.org](https://hub.mybinder.org/user/orchid00-report_example-8tspwrl1/view/report/Gapminderreport.html)
+Also shared using [mybinder.org](https://hub.mybinder.org/user/orchid00-report_example-8tspwrl1/view/report/Gapminderreport.html) and [files](https://mybinder.org/v2/gh/orchid00/Report_example/master)
 
 ## Challenge yourself
 
