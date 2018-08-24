@@ -17,7 +17,7 @@ knitr::opts_chunk$set(fig.path = "../figs/", message = FALSE, warning = FALSE,
 
 ```{r download_file}
 if (!file.exists("../data/SWCgapminder.csv")) {
-  download.file(url = "http://tiny.cc/SWCgapminder",
+  download.file(url = "http://tiny.cc/gapminder_data",
               destfile = "../data/SWCgapminder.csv")
 }
 ```

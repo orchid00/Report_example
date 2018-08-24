@@ -196,12 +196,25 @@ gapminder %>%
 # How many rows does your data
 # have and why?
 
+# add colours to this plot
 gapminder %>% 
+    filter(continent == "Oceania" ) %>% 
+    select(year, country, lifeExp, continent) %>% 
+    ggplot(aes(x = year, y = lifeExp, colour = country)) +
+       geom_point()
+    
+    
+    
+    
+
+# Save this into african_countries
+african_countries <- gapminder %>% 
     filter(continent == "Africa" ) %>% 
     select(year, country, lifeExp)
 
-# Save this into african_countries
-dim(african_countries)
+dim(african_countries) # 624  3
 # write african_countries as a csv file in data/
+write_csv(african_countries, 
+          path = "data/african_countries.csv")
 
 

@@ -277,6 +277,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -314,7 +317,7 @@ $(document).ready(function () {
 <div id="the-gapminder-dataset" class="section level2">
 <h2>The gapminder dataset</h2>
 <pre class="r"><code>if (!file.exists(&quot;../data/SWCgapminder.csv&quot;)) {
-  download.file(url = &quot;http://tiny.cc/SWCgapminder&quot;,
+  download.file(url = &quot;http://tiny.cc/gapminder_data&quot;,
               destfile = &quot;../data/SWCgapminder.csv&quot;)
 }</code></pre>
 <pre class="r"><code>library(tidyverse)</code></pre>
